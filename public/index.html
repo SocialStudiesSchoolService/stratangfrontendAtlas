@@ -36,17 +36,33 @@
     <title></title>
 </head>
 <body>
+    <div
+        data-integro-maps="true"
+
+    ></div>
 <div id="documentViewer" class="flowpaper_viewer" style="position:absolute;;width:100%;height:100%;background-color:#222222;;"></div>
 <script type="text/javascript">
+    
+    (function IntegroAtlases() {
+            const $a = function (){
+
+            } 
+            $a.prototype._init = function (){
+
+            }
+    })();
+
+
+
     // viewer start
-    $('#documentViewer').FlowPaperViewer(
+    var constAtlase = $('#documentViewer').FlowPaperViewer(
             { config : {
-                PDFFile                 : 'social-atlase/social-atlase.pdf?reload=1552572834988',
-                IMGFiles                : 'social-atlase/social-atlase.pdf_{page}.jpg?reload=1552572834988',
+                PDFFile                 : 'atlases/social-atlase/social-atlase.pdf?reload=1552572834988',
+                IMGFiles                : 'atlases/social-atlase/social-atlase.pdf_{page}.jpg?reload=1552572834988',
                 HighResIMGFiles         : '',
-                JSONFile                : 'social-atlase/social-atlase.pdf_{page}.bin?reload=1552572834988',
+                JSONFile                : 'atlases/social-atlase/social-atlase.pdf_{page}.bin?reload=1552572834988',
                 JSONDataType            : 'lz',
-                ThumbIMGFiles           : 'social-atlase/social-atlase.pdf_{page}_thumb.jpg?reload=1552572834988',
+                ThumbIMGFiles           : 'atlases/social-atlase/social-atlase.pdf_{page}_thumb.jpg?reload=1552572834988',
                 SWFFile                 : '',
                 FontsToLoad             : ["g_font_1","g_font_2","g_font_3","g_font_4","g_font_5","g_font_6","g_font_7","g_font_8","g_font_9","g_font_10","g_font_11","g_font_12","g_font_13","g_font_14","g_font_15","g_font_16"],
 
@@ -87,17 +103,17 @@
                 localeChain             : 'en_US'
             }}
     );
+
+    console.log('constAtlase', constAtlase)
     // viewer end
 
     var url = window.location.href.toString();
     if(location.length==0){
         url = document.URL.toString();
     }
-    /*
     if(url.indexOf("file:")>=0){
         jQuery('#documentViewer').html("<div style='position:relative;background-color:#ffffff;width:420px;font-family:Verdana;font-size:10pt;left:22%;top:20%;padding: 10px 10px 10px 10px;border-style:solid;border-width:5px;'><img src='data:image/gif;base64,R0lGODlhEAAPAMQPAPS+GvXAIfrjnP/89vnZePrhlvS9F//+/PrfjfS/HfrgkPS+GP/9+YJiACAYAP////O3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAA8ALAAAAAAQAA8AAAVQ4COOD0GQKElA0JmSg7EsxvCOCMsi9xPrkNpNwXI0WIoXA1A8QgCMVEFn1BVQS6rzGR1NtcCriJEAVnWJrgDI1gkehwD7rAsc1u28QJ5vB0IAOw%3D%3D'>&nbsp;<b>You are trying to use FlowPaper from a local directory.</b><br/><br/> Use the 'View in browser' button in the Desktop Publisher publish & preview dialog window to preview your publication or copy the contents of your publication directory to a web server and access this html file through a http:// url.</div>");
     }
-    */
 </script>
 </body>
 </html>

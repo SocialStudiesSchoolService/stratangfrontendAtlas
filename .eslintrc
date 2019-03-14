@@ -1,0 +1,56 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "ecmaVersion": 5,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "jquery": true
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+		"eslint:recommended"
+  ],
+  "rules": {
+		"comma-spacing": 2,
+    "comma-dangle": [2, "never"],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+		"keyword-spacing": 1,
+		"max-len": [1, 180, 4],
+    "quotes": [2, "single"],
+		"semi": 2,
+		"space-before-function-paren": 1,
+		"spaced-comment": 2,
+    "object-shorthand": 2,
+		"object-curly-spacing": [2, "always"],
+		"prefer-const": 2,
+		"valid-typeof": 2,
+    "no-const-assign": 2,
+		"no-console": 2,
+		"no-debugger": 2,
+    "no-duplicate-imports": 2,
+    "no-empty": 2,
+		"no-extra-bind": 2,
+		"no-extra-semi": 1,
+		"no-eval": 2,
+    "no-multi-spaces": 2,
+    "no-nested-ternary": 2,
+    "no-trailing-spaces": 2,
+    "no-undef": 2,
+		"no-undefined": 0,
+		"no-unreachable": 1,
+		"no-unused-expressions": 1,
+		"no-unused-vars": 2,
+    "no-useless-constructor": 2,
+		"no-with": 2
+  },
+  "settings": {
+  }
+}
