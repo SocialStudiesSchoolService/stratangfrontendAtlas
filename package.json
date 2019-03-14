@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node index.js",
     "test": "npm run lint",
-    "lint": "npm run lint:eslint -- public/js/integroAtlases.js ",
+    "lint": "npm run lint:eslint -- ./public/js/integro_atlases.js ",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern dist/"
   },
   "dependencies": {
