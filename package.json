@@ -1,0 +1,14 @@
+{
+  "name": "Atlases",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SocialStudiesSchoolService/stratangfrontendAtlas.git",
+  "author": "<jhon.marroquin@integ.ro>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
