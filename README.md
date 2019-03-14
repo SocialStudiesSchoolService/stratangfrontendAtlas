@@ -1,0 +1,2 @@
+# stratangfrontendAtlas
+Atlases map
