@@ -28,7 +28,7 @@
 		"semi": 2,
 		"space-before-function-paren": 1,
 		"spaced-comment": 2,
-    "object-shorthand": 2,
+    "object-shorthand": 0,
 		"object-curly-spacing": [2, "always"],
 		"prefer-const": 2,
 		"valid-typeof": 2,
