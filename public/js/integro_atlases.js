@@ -169,7 +169,7 @@
 
           WMode                   : 'transparent',
 
-          key                     : '',
+          key                     : keyAtlases,
           TrackingNumber          : '',
           localeDirectory         : 'locale/',
           localeChain             : 'en_US'
