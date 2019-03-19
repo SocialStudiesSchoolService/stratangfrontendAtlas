@@ -47,9 +47,12 @@
     $atlases.prototype._fetchAtlases = function (){
       const self = this;
       this._fetch('atlases:GET', '?sort=id', function (atlases){
+        let idViewAtlas = 1;
         console.log('resposne attlases', atlases);
 
-        const atlas = atlases[1];
+        const urlParams = self._captureUrlParams();
+        if (urlParams.atlas) idViewAtlas = urlParams.atlas;
+        const atlas = atlases[idViewAtlas];
         (self.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom, atlas); });
       });
     };
@@ -78,6 +81,19 @@
       $.ajax(paramsAjax);
     };
 
+    $atlases.prototype._captureUrlParams = function () {
+      const urlString = window.location.href
+      console.log('url string', urlString);
+      const urlFormat = new URL(urlString);
+      console.log('url format', urlFormat);
+      let atlas = urlFormat.searchParams.get("atlas");
+      if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
+      
+      console.log('url param atlas', atlas);
+
+      return { atlas: atlas };
+    }
+
     $atlases.prototype._loadPdf = function (elementDom, dataAtlas) {
       const idParent = elementDom.id;
       const uriAtlases = dataAtlas.uri;
@@ -93,7 +109,7 @@
         '<div id="' + idViewer + '" class="flowpaper_viewer" style="position:absolute; width:100%; height:100%; background-color:#222222;"></div>'
       );
 
-      console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf---');
+      console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases);
 
       $('#' + idViewer + '').FlowPaperViewer({
         config : {
