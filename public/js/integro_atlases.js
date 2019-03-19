@@ -99,6 +99,7 @@
       const uriAtlases = dataAtlas.uri;
       const keyAtlases = dataAtlas.key;
       const nameAtlases = dataAtlas.name;
+      const keyReloadAtlases = dataAtlas.render;
       // const keyAtlases = elementDom.getAttribute('data-key-atlas');
       // const nameAtlases = elementDom.getAttribute('data-name-atlas');
       if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
@@ -113,12 +114,12 @@
 
       $('#' + idViewer + '').FlowPaperViewer({
         config : {
-          PDFFile                 : uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases,
-          IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyAtlases,
+          PDFFile                 : uriAtlases + nameAtlases + '.pdf?reload=' + keyReloadAtlases,
+          IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
           HighResIMGFiles         : '',
-          JSONFile                : uriAtlases + nameAtlases + '.pdf_{page}.bin?reload=' + keyAtlases,
+          JSONFile                : uriAtlases + nameAtlases + '.pdf_{page}.bin?reload=' + keyReloadAtlases,
           JSONDataType            : 'lz',
-          ThumbIMGFiles           : uriAtlases + nameAtlases + '.pdf_{page}_thumb.jpg?reload=' + keyAtlases,
+          ThumbIMGFiles           : uriAtlases + nameAtlases + '.pdf_{page}_thumb.jpg?reload=' + keyReloadAtlases,
           SWFFile                 : '',
           FontsToLoad             : [
             'g_font_1',
@@ -163,7 +164,7 @@
           LinkTarget              : 'New window',
           MixedMode               : true,
 
-          UIConfig                : uriAtlases + 'UI_Zine.xml?reload=' + keyAtlases,
+          UIConfig                : uriAtlases + 'UI_Zine.xml?reload=' + keyReloadAtlases,
           BrandingLogo            : '',
           BrandingUrl             : '',
 
