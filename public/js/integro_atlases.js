@@ -83,13 +83,9 @@
 
     $atlases.prototype._captureUrlParams = function () {
       const urlString = window.location.href
-      console.log('url string', urlString);
       const urlFormat = new URL(urlString);
-      console.log('url format', urlFormat);
       let atlas = urlFormat.searchParams.get("atlas");
       if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
-      
-      console.log('url param atlas', atlas);
 
       return { atlas: atlas };
     }
