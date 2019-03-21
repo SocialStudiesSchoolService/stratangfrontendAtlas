@@ -95,7 +95,7 @@
       const uriAtlases = dataAtlas.uri;
       const keyAtlases = dataAtlas.key;
       const nameAtlases = dataAtlas.name;
-      const keyReloadAtlases = dataAtlas.render;
+      const keyReloadAtlases = dataAtlas.keyReload;
       // const keyAtlases = elementDom.getAttribute('data-key-atlas');
       // const nameAtlases = elementDom.getAttribute('data-name-atlas');
       if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
