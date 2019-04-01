@@ -50,7 +50,7 @@ function IntegroAtlases () {
       const urlParams = self._captureUrlParams();
       if (urlParams.atlas) idViewAtlas = urlParams.atlas;
       const atlas = atlases[idViewAtlas];
-      self._loadPdf(this.elementDom, atlas);
+      self._loadPdf(self.elementDom, atlas);
     });
   };
 
