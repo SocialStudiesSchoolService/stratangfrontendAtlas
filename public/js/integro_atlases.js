@@ -19,13 +19,10 @@ function IntegroAtlases () {
     return new $atlases();
   }
   const $atlases = function () {
-    this.arrayDom = document.querySelectorAll('[data-integro-atlases="true"]');
+    this.elementDom = document.querySelector('[data-integro-atlases="true"]');
     this._init();
   };
-  $atlases.prototype._init = function (){
-    this._authenticate();
-    // (this.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom); });
-  };
+  $atlases.prototype._init = function (){ this._authenticate(); };
 
   $atlases.prototype._authenticate = function (){
 
@@ -52,7 +49,7 @@ function IntegroAtlases () {
       const urlParams = self._captureUrlParams();
       if (urlParams.atlas) idViewAtlas = urlParams.atlas;
       const atlas = atlases[idViewAtlas];
-      (self.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom, atlas); });
+      self._loadPdf(this.elementDom, atlas);
     });
   };
 
