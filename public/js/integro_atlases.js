@@ -20,6 +20,7 @@ function IntegroAtlases () {
   }
   const $atlases = function () {
     this.elementDom = document.querySelector('[data-integro-atlases="true"]');
+    console.log('this. elementDom', this.elementDom);
     this._init();
   };
   $atlases.prototype._init = function (){ this._authenticate(); };
@@ -80,8 +81,8 @@ function IntegroAtlases () {
   $atlases.prototype._captureUrlParams = function () {
     const urlString = window.location.href
     const urlFormat = new URL(urlString);
-    let atlas = urlFormat.searchParams.get("atlas");
-    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
+    let atlas = urlFormat.searchParams.get('atlas');
+    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '');
 
     return { atlas: atlas };
   };
