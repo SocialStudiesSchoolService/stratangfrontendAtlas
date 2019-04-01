@@ -1,4 +1,4 @@
-(function IntegroAtlases () {
+function IntegroAtlases () {
   const BASE_URL = 'https://stratang-backend.integ.ro';
   const BASE_API_URL = BASE_URL + '/api';
 
@@ -157,4 +157,5 @@
     });
   };
   $a();
-})();
+}
+IntegroAtlases();
