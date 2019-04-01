@@ -49,7 +49,7 @@
       const urlParams = self._captureUrlParams();
       if (urlParams.atlas) idViewAtlas = urlParams.atlas;
       const atlas = atlases[idViewAtlas];
-      (self.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom, atlas); });
+      self._loadPdf(atlas);
     });
   };
 
@@ -86,8 +86,8 @@
     return { atlas: atlas };
   };
 
-  $atlases.prototype._loadPdf = function (elementDom, dataAtlas) {
-    const idParent = elementDom.id;
+  $atlases.prototype._loadPdf = function (dataAtlas) {
+    const idParent = this.elementDom.id;
     const uriAtlases = dataAtlas.uri;
     const keyAtlases = dataAtlas.key;
     const nameAtlases = dataAtlas.name;
