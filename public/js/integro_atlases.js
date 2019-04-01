@@ -98,14 +98,17 @@ function IntegroAtlases () {
     if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
     const idViewer = idParent + '-viewer';
 
+    /*
     elementDom.insertAdjacentHTML(
       'beforeend',
       '<div id="' + idViewer + '" class="flowpaper_viewer" style="position:absolute; width:100%; height:100%; background-color:#222222;"></div>'
     );
 
+    */
+
     console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases);
 
-    $('#' + idViewer + '').FlowPaperViewer({
+    $('#' + idParent + '').FlowPaperViewer({
       config : {
         PDFFile                 : uriAtlases + nameAtlases + '_[*,2].pdf?reload=' + keyReloadAtlases,
         IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
