@@ -109,7 +109,7 @@
 
     $('#' + idViewer + '').FlowPaperViewer({
       config : {
-        PDFFile                 : uriAtlases + nameAtlases + '.pdf?reload=' + keyReloadAtlases,
+        PDFFile                 : uriAtlases + nameAtlases + '_[*,2].pdf?reload=' + keyReloadAtlases,
         IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
         HighResIMGFiles         : '',
         JSONFile                : uriAtlases + nameAtlases + '.pdf_{page}.bin?reload=' + keyReloadAtlases,
@@ -126,7 +126,7 @@
         FitWidthOnLoad          : false,
         AutoAdjustPrintSize     : true,
         PrintPaperAsBitmap      : false,
-        AutoDetectLinks         : true,
+        AutoDetectLinks         : false,
         ImprovedAccessibility   : false,
         FullScreenAsMaxWindow   : false,
         ProgressiveLoading      : false,

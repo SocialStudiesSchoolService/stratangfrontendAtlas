@@ -8,14 +8,14 @@
   <meta name="format-detection" content="telephone=no"/>
   <meta property="og:title" content="social atlase" />
   <meta name="twitter:title" content="social atlase" />
-  <meta name="twitter:image:src" content="https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/social-atlase.pdf_1_thumb.jpg" />
+  <meta name="twitter:image:src" content="docs/social-atlase.pdf_1_thumb.jpg" />
   <meta name="twitter:card" content="player">
   <meta name="twitter:player" content="">
   <meta name="twitter:player:width" content="400">
   <meta name="twitter:player:height" content="300">
 
   <meta property="og:url" content="" />
-  <meta property="og:image" content="https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/social-atlase.pdf_1_thumb.jpg" />    
+  <meta property="og:image" content="docs/social-atlase.pdf_1_thumb.jpg" />    
   <meta property="og:image:width" content="122" /> 
   <meta property="og:image:height" content="158" /> 
   
@@ -51,6 +51,7 @@
   <!--<![endif]-->
   <script type="text/javascript" src="js/flowpaper.js"></script>
   <script type="text/javascript" src="js/flowpaper_handlers.js"></script>
+  <script type="text/javascript" src="js/integro_atlases.js"></script>
   <title></title>
 </head>
 <body>
@@ -65,57 +66,12 @@
   -->
   <!--
   -->
-  <div id="documentViewer" class="flowpaper_viewer" style="position:absolute;;width:100%;height:100%;background-color:#222222;;"></div>
-
-  <script>
-    $('#documentViewer').FlowPaperViewer(
-            { config : {
-                PDFFile                 : 'https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/atlas_us_history_[*,2].pdf?reload=1554131178210',
-                IMGFiles                : 'https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/atlas_us_history.pdf_{page}.jpg?reload=1554131178210',
-                HighResIMGFiles         : '',
-                JSONFile                : 'https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/atlas_us_history.pdf_{page}.bin?reload=1554131178210',
-                JSONDataType            : 'lz',
-                ThumbIMGFiles           : 'https://maps-nystrom-edu.integ.ro/dist/atlas/data/atlas_2/atlas_us_history.pdf_{page}_thumb.jpg?reload=1554131178210',
-                SWFFile                 : '',
-                FontsToLoad             : null,
-
-                Scale                   : 0.1,
-                ZoomTransition          : 'easeOut',
-                ZoomTime                : 0.4,
-                ZoomInterval            : 0.1,
-                FitPageOnLoad           : true,
-                FitWidthOnLoad          : false,
-                AutoAdjustPrintSize     : true,
-                PrintPaperAsBitmap      : false,
-                AutoDetectLinks         : false,
-                ImprovedAccessibility   : false,
-                FullScreenAsMaxWindow   : false,
-                ProgressiveLoading      : false,
-                MinZoomSize             : 0.1,
-                MaxZoomSize             : 5,
-                SearchMatchAll          : true,
-                InitViewMode            : 'Zine',
-                RTLMode                 : false,
-                RenderingOrder          : 'html5,html',
-                StartAtPage             : 1,
-                EnableWebGL             : false,
-                PreviewMode             : '',
-                PublicationTitle        : '',
-                LinkTarget              : 'New window',
-                MixedMode               : true,
-
-                UIConfig                : 'UI_Zine.xml?reload=1554131178211',
-                BrandingLogo            : '',
-                BrandingUrl             : '',
-
-                WMode                   : 'transparent',
-
-                key                     : '$8cbd4eb8af1a56a71bb',
-                TrackingNumber          : '',
-                localeDirectory         : 'locale/',
-                localeChain             : 'en_US'
-            }}
-    );
-  </script>
+  <div
+    id="container-viewer"
+    class="container-viewer"
+    data-key-atlas="1552598090903"
+    data-name-atlas="elecciones"
+    data-integro-atlases="true"
+  ></div>
 </body>
 </html>
