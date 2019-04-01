@@ -47,9 +47,12 @@
     $atlases.prototype._fetchAtlases = function (){
       const self = this;
       this._fetch('atlases:GET', '?sort=id', function (atlases){
+        let idViewAtlas = 1;
         console.log('resposne attlases', atlases);
 
-        const atlas = atlases[1];
+        const urlParams = self._captureUrlParams();
+        if (urlParams.atlas) idViewAtlas = urlParams.atlas;
+        const atlas = atlases[idViewAtlas];
         (self.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom, atlas); });
       });
     };
@@ -78,11 +81,21 @@
       $.ajax(paramsAjax);
     };
 
+    $atlases.prototype._captureUrlParams = function () {
+      const urlString = window.location.href
+      const urlFormat = new URL(urlString);
+      let atlas = urlFormat.searchParams.get("atlas");
+      if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
+
+      return { atlas: atlas };
+    }
+
     $atlases.prototype._loadPdf = function (elementDom, dataAtlas) {
       const idParent = elementDom.id;
       const uriAtlases = dataAtlas.uri;
       const keyAtlases = dataAtlas.key;
       const nameAtlases = dataAtlas.name;
+      const keyReloadAtlases = dataAtlas.keyReload;
       // const keyAtlases = elementDom.getAttribute('data-key-atlas');
       // const nameAtlases = elementDom.getAttribute('data-name-atlas');
       if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
@@ -93,18 +106,19 @@
         '<div id="' + idViewer + '" class="flowpaper_viewer" style="position:absolute; width:100%; height:100%; background-color:#222222;"></div>'
       );
 
-      console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf---');
+      console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases);
 
       $('#' + idViewer + '').FlowPaperViewer({
         config : {
-          PDFFile                 : uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases,
-          IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyAtlases,
+          PDFFile                 : uriAtlases + nameAtlases + '.pdf?reload=' + keyReloadAtlases,
+          IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
           HighResIMGFiles         : '',
-          JSONFile                : uriAtlases + nameAtlases + '.pdf_{page}.bin?reload=' + keyAtlases,
+          JSONFile                : uriAtlases + nameAtlases + '.pdf_{page}.bin?reload=' + keyReloadAtlases,
           JSONDataType            : 'lz',
-          ThumbIMGFiles           : uriAtlases + nameAtlases + '.pdf_{page}_thumb.jpg?reload=' + keyAtlases,
+          ThumbIMGFiles           : uriAtlases + nameAtlases + '.pdf_{page}_thumb.jpg?reload=' + keyReloadAtlases,
           SWFFile                 : '',
           FontsToLoad             : null,
+
           Scale                   : 0.1,
           ZoomTransition          : 'easeOut',
           ZoomTime                : 0.4,
@@ -130,13 +144,13 @@
           LinkTarget              : 'New window',
           MixedMode               : true,
 
-          UIConfig                : uriAtlases + 'UI_Zine.xml?reload=' + keyAtlases,
+          UIConfig                : uriAtlases + 'UI_Zine.xml?reload=' + keyReloadAtlases,
           BrandingLogo            : '',
           BrandingUrl             : '',
 
           WMode                   : 'transparent',
 
-          key                     : '',
+          key                     : keyAtlases,
           TrackingNumber          : '',
           localeDirectory         : 'locale/',
           localeChain             : 'en_US'
