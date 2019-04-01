@@ -1,3 +1,4 @@
+(function IntegroAtlases () {
   const BASE_URL = 'https://stratang-backend.integ.ro';
   const BASE_API_URL = BASE_URL + '/api';
 
@@ -18,11 +19,13 @@
     return new $atlases();
   }
   const $atlases = function () {
-    this.elementDom = document.querySelector('[data-integro-atlases="true"]');
-    console.log('this. elementDom', this.elementDom.id);
+    this.arrayDom = document.querySelectorAll('[data-integro-atlases="true"]');
     this._init();
   };
-  $atlases.prototype._init = function (){ this._authenticate(); };
+  $atlases.prototype._init = function (){
+    this._authenticate();
+    // (this.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom); });
+  };
 
   $atlases.prototype._authenticate = function (){
 
@@ -49,7 +52,7 @@
       const urlParams = self._captureUrlParams();
       if (urlParams.atlas) idViewAtlas = urlParams.atlas;
       const atlas = atlases[idViewAtlas];
-      self._loadPdf(self.elementDom, atlas);
+      (self.arrayDom).forEach(function (elementDom){ self._loadPdf(elementDom, atlas); });
     });
   };
 
@@ -80,8 +83,8 @@
   $atlases.prototype._captureUrlParams = function () {
     const urlString = window.location.href
     const urlFormat = new URL(urlString);
-    let atlas = urlFormat.searchParams.get('atlas');
-    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '');
+    let atlas = urlFormat.searchParams.get("atlas");
+    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
 
     return { atlas: atlas };
   };
@@ -97,17 +100,14 @@
     if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
     const idViewer = idParent + '-viewer';
 
-    /*
     elementDom.insertAdjacentHTML(
       'beforeend',
       '<div id="' + idViewer + '" class="flowpaper_viewer" style="position:absolute; width:100%; height:100%; background-color:#222222;"></div>'
     );
 
-    */
-
     console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases);
 
-    $('#' + idParent).FlowPaperViewer({
+    $('#' + idViewer).FlowPaperViewer({
       config : {
         PDFFile                 : uriAtlases + nameAtlases + '_[*,2].pdf?reload=' + keyReloadAtlases,
         IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
@@ -157,3 +157,4 @@
     });
   };
   $a();
+})();
