@@ -88,7 +88,7 @@
       if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
 
       return { atlas: atlas };
-    }
+    };
 
     $atlases.prototype._loadPdf = function (elementDom, dataAtlas) {
       const idParent = elementDom.id;
