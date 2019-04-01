@@ -20,7 +20,7 @@ function IntegroAtlases () {
   }
   const $atlases = function () {
     this.elementDom = document.querySelector('[data-integro-atlases="true"]');
-    console.log('this. elementDom', this.elementDom);
+    console.log('this. elementDom', this.elementDom.id);
     this._init();
   };
   $atlases.prototype._init = function (){ this._authenticate(); };
