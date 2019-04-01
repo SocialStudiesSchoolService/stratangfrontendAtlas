@@ -135,7 +135,7 @@
         SearchMatchAll          : true,
         InitViewMode            : 'Zine',
         RTLMode                 : false,
-        RenderingOrder          : 'html,html',
+        RenderingOrder          : 'html5,html',
         StartAtPage             : 1,
         EnableWebGL             : false,
         PreviewMode             : '',
