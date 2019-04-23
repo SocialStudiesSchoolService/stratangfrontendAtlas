@@ -92,6 +92,9 @@
     const keyAtlases = dataAtlas.key;
     const nameAtlases = dataAtlas.name;
     const keyReloadAtlases = dataAtlas.keyReload;
+
+    const InitViewMode = nameAtlases === 'NYS3505_AtlasGigante_Digital_v2-5'? 'Flip-SinglePage': 'Zine';
+
     // const keyAtlases = elementDom.getAttribute('data-key-atlas');
     // const nameAtlases = elementDom.getAttribute('data-name-atlas');
     if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
@@ -100,6 +103,8 @@
 
     $('#' + idParent).FlowPaperViewer({
       config : {
+        InitViewMode,
+
         PDFFile                 : uriAtlases + nameAtlases + '_[*,2].pdf?reload=' + keyReloadAtlases,
         IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
         HighResIMGFiles         : '',
@@ -124,7 +129,6 @@
         MinZoomSize             : 0.1,
         MaxZoomSize             : 10,
         SearchMatchAll          : true,
-        InitViewMode            : 'Zine',
         RTLMode                 : false,
         RenderingOrder          : 'html5,html',
         StartAtPage             : 1,
