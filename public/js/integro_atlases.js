@@ -103,7 +103,7 @@
 
     $('#' + idParent).FlowPaperViewer({
       config : {
-        InitViewMode,
+        InitViewMode: InitViewMode,
 
         PDFFile                 : uriAtlases + nameAtlases + '_[*,2].pdf?reload=' + keyReloadAtlases,
         IMGFiles                : uriAtlases + nameAtlases + '.pdf_{page}.jpg?reload=' + keyReloadAtlases,
