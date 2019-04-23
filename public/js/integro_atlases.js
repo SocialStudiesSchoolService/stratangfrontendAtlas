@@ -94,6 +94,7 @@
     const keyReloadAtlases = dataAtlas.keyReload;
 
     const InitViewMode = nameAtlases === 'NYS3505_AtlasGigante_Digital_v2-5'? 'Flip-SinglePage': 'Zine';
+    console.log('InitViewMode', InitViewMode);
 
     // const keyAtlases = elementDom.getAttribute('data-key-atlas');
     // const nameAtlases = elementDom.getAttribute('data-name-atlas');
