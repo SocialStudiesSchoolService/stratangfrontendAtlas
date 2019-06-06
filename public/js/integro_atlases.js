@@ -42,14 +42,17 @@
 
   $atlases.prototype._fetchAtlases = function (){
     const self = this;
-    this._fetch('atlases:GET', '?sort=id', function (atlases){
+    this._fetch('atlases:GET', '?sort=id', function (atlas){
       let idViewAtlas = 1;
-      console.log('resposne attlases', atlases);
+      console.log('response atlas', atlas);
 
       const urlParams = self._captureUrlParams();
-      if (urlParams.atlas) idViewAtlas = urlParams.atlas;
-      const atlas = atlases[idViewAtlas];
-      self._loadPdf(atlas);
+      if (urlParams.atlas) {
+        idViewAtlas = urlParams.atlas;
+        atlas.forEach((oneAtlas)=>{
+          if(oneAtlas.id * 1 === idViewAtlas * 1) self._loadPdf(oneAtlas);
+        })
+      } 
     });
   };
 
