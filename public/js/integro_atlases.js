@@ -55,7 +55,7 @@
 
       if (atlasId) {
         idViewAtlas = atlasId;
-        arrayAtlas.forEach((atlas)=>{
+        arrayAtlas.forEach ((atlas)=>{
           if(atlas.id * 1 === idViewAtlas * 1) self._loadPdf (atlas);
         });
       }
