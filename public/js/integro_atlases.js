@@ -1,4 +1,4 @@
-(function IntegroAtlases () {
+(function IntegroAtlas () {
   const BASE_URL = 'https://stratang-backend.integ.ro';
   const BASE_API_URL = BASE_URL + '/api';
 
@@ -15,48 +15,54 @@
     }
   };
 
+  let atlasId;
+  let userToken;
+
   function $a () {
-    return new $atlases();
+    return new $classAtlas();
   }
-  const $atlases = function () {
+  const $classAtlas = function () {
     this.elementDom = document.querySelector('[data-integro-atlases="true"]');
     this._init();
   };
 
-  $atlases.prototype._init = function (){ this._authenticate(); };
-  $atlases.prototype._authenticate = function (){
+  $classAtlas.prototype._init = function (){
+    this._captureUrlParams();
+    this._authenticate();
+  };
+  $classAtlas.prototype._authenticate = function (){
 
-    const userToken = localStorage.getItem('userToken');
-    const self=this;
-    const password='!"·$%&';
-    const username='nystrom_maps_system';
-    const rememberMe=true;
+    const self= this;
+    const username= 'admin';
+    const password= '1ntegro2019';
+    const rememberMe= true;
 
     if (userToken && userToken !== '') return this._fetchAtlases();
 
     this._fetch('authenticate:POST', { password: password, username: username, rememberMe: rememberMe }, function (response){
-      localStorage.setItem('userToken', response.id_token);
-      self._fetchAtlases();
+      if (response.id_token){
+        userToken= response.id_token;
+        self._fetchAtlases();
+      }
     });
   };
 
-  $atlases.prototype._fetchAtlases = function (){
+  $classAtlas.prototype._fetchAtlases = function (){
     const self = this;
-    this._fetch('atlases:GET', '?sort=id', function (atlas){
+    this._fetch('atlases:GET', '?sort=id', function (arrayAtlas){
       let idViewAtlas = 1;
-      console.log('response atlas', atlas);
+      // console.log('response atlas', atlas);
 
-      const urlParams = self._captureUrlParams();
-      if (urlParams.atlas) {
-        idViewAtlas = urlParams.atlas;
-        atlas.forEach((oneAtlas)=>{
-          if(oneAtlas.id * 1 === idViewAtlas * 1) self._loadPdf(oneAtlas);
-        })
-      } 
+      if (atlasId) {
+        idViewAtlas = atlasId;
+        arrayAtlas.forEach((atlas)=>{
+          if(atlas.id * 1 === idViewAtlas * 1) self._loadPdf (atlas);
+        });
+      }
     });
   };
 
-  $atlases.prototype._fetch = function (api, data, callback){
+  $classAtlas.prototype._fetch = function (api, data, callback){
     const url = ALL_API_URL[api].url;
     const method = ALL_API_URL[api].method;
     const useToken = ALL_API_URL[api].useToken;
@@ -72,24 +78,23 @@
     if (method !== 'get') paramsAjax.data = JSON.stringify(data);
     else paramsAjax.url += data;
 
-    if (useToken) {
-      const token = localStorage.getItem('userToken');
-      if (token && token !== '') paramsAjax.headers = { Authorization: 'Bearer ' + token };
-    }
+    if (useToken && userToken && userToken !== '') paramsAjax.headers = { Authorization: 'Bearer ' + userToken };
 
     $.ajax(paramsAjax);
   };
 
-  $atlases.prototype._captureUrlParams = function () {
-    const urlString = window.location.href
+  $classAtlas.prototype._captureUrlParams = function () {
+    const urlString = window.location.href;
     const urlFormat = new URL(urlString);
-    let atlas = urlFormat.searchParams.get("atlas");
-    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '')
+    const key = urlFormat.searchParams.get('key');
+    let atlas = urlFormat.searchParams.get('atlas');
+    if (atlas && atlas !== '') atlas = atlas.replace(/[^\d]/g, '');
 
-    return { atlas: atlas };
+    atlasId = atlas;
+    userToken = key;
   };
 
-  $atlases.prototype._loadPdf = function (dataAtlas) {
+  $classAtlas.prototype._loadPdf = function (dataAtlas) {
     const idParent = this.elementDom.id;
     const uriAtlases = dataAtlas.uri;
     const keyAtlases = dataAtlas.key;
@@ -97,13 +102,8 @@
     const keyReloadAtlases = dataAtlas.keyReload;
 
     const InitViewMode = nameAtlases === 'NYS3505_AtlasGigante_Digital_v2-5'? 'Flip-SinglePage': 'Zine';
-    console.log('InitViewMode', InitViewMode);
 
-    // const keyAtlases = elementDom.getAttribute('data-key-atlas');
-    // const nameAtlases = elementDom.getAttribute('data-name-atlas');
     if (!idParent || idParent === '' || !keyAtlases || keyAtlases === '' || !nameAtlases || nameAtlases === '') return; // div without id, key and name atlas
-
-    console.log('url completessss ---', uriAtlases + nameAtlases + '.pdf?reload=' + keyAtlases);
 
     $('#' + idParent).FlowPaperViewer({
       config : {
